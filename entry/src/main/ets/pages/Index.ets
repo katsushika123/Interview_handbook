@@ -1,3 +1,4 @@
+import { Logger } from '../common/utils/Logger';
 import { windowManger } from '../common/utils/windowManger';
 import { Mine } from '../views/mine/Mine';
 
@@ -10,6 +11,7 @@ struct Index {
 
   aboutToAppear(): void {
     windowManger.enableFullScreen() //开启沉浸模式
+    Logger.info('测试', '提交')
   }
 
   build() {
