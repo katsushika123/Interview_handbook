@@ -1,3 +1,6 @@
+import { windowManger } from '../common/utils/windowManger';
+import { Mine } from '../views/mine/Mine';
+
 @Entry
 @Component
 struct Index {
@@ -5,33 +8,48 @@ struct Index {
   //存储tabBar的索引
   @State tabBarIndex: number = 0
 
+  aboutToAppear(): void {
+    windowManger.enableFullScreen() //开启沉浸模式
+  }
+
   build() {
     Column() {
       Tabs({ barPosition: BarPosition.End }) {
         TabContent() {
-          Text('首页')
-            .fontSize(50)
+          //手动控制页面的渲染和销毁
+          if (this.tabBarIndex == 0) {
+            Text('首页')
+              .fontSize(50)
+          }
+
         }
         .tabBar(this.tabBarBuilder('home', '首页', 0))
 
         TabContent() {
-          Text('项目')
-            .fontSize(50)
+          //手动控制页面的渲染和销毁
+          if (this.tabBarIndex == 1) {
+            Text('项目')
+              .fontSize(50)
+          }
 
         }
         .tabBar(this.tabBarBuilder('project', '项目', 1))
 
         TabContent() {
-          Text('面经')
-            .fontSize(50)
+          //手动控制页面的渲染和销毁
+          if (this.tabBarIndex == 2) {
+            Text('面经')
+              .fontSize(50)
+          }
 
         }
         .tabBar(this.tabBarBuilder('interview', '面经', 2))
 
         TabContent() {
-          Text('我的')
-            .fontSize(50)
-
+          //手动控制页面的渲染和销毁
+          if (this.tabBarIndex == 3) {
+            Mine()
+          }
         }
         .tabBar(this.tabBarBuilder('mine', '我的', 3))
 
